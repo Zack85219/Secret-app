@@ -85,8 +85,9 @@ passport.use(
 app.get("/", function (req, res) {
   if (req.isAuthenticated()) {
     res.redirect("/secrets");
+  } else {
+    res.render("home");
   }
-  res.render("home");
 });
 
 app.get(
