@@ -83,6 +83,9 @@ passport.use(
 );
 
 app.get("/", function (req, res) {
+  if (req.isAuthenticated()) {
+    res.redirect("/secrets");
+  }
   res.render("home");
 });
 
@@ -91,6 +94,7 @@ app.get(
   passport.authenticate("google", { scope: ["profile"] })
 );
 
+// log in with google account
 app.get(
   "/auth/google/secrets",
   passport.authenticate("google", { failureRedirect: "/login" }),
